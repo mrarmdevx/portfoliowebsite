@@ -570,23 +570,6 @@ behavior:'smooth'
 
 }
 
-<script>
-
-function showSection(id){
-
-document.querySelectorAll('.section').forEach(section=>{
-section.classList.remove('active');
-});
-
-document.getElementById(id).classList.add('active');
-
-window.scrollTo({
-top:0,
-behavior:'smooth'
-});
-
-}
-
 /* RELEASE PROJECT */
 
 const games = [
@@ -602,34 +585,12 @@ roblox:"https://www.roblox.com/games/85535589075948/Anime-Reversal"
 {
 name:"Anime Fantasy",
 role:"Project Manager",
-placeId:"18318589583",
+universeId:"7002250865",
 discord:"https://discord.com/invite/Uft7RR25Mk",
 roblox:"https://www.roblox.com/games/18318589583/AnimeFantasy-RE"
 }
 
 ];
-
-/* GET UNIVERSE ID */
-
-async function getUniverseId(placeId){
-
-try{
-
-const res = await fetch(`https://apis.roproxy.com/universes/v1/places/${placeId}/universe`);
-
-const data = await res.json();
-
-return data.universeId;
-
-}catch(err){
-
-console.log(err);
-
-return null;
-
-}
-
-}
 
 async function fetchGameData(){
 
@@ -641,37 +602,18 @@ for(const game of games){
 
 try{
 
-let universeId = game.universeId;
-
-/* FIX ANIME FANTASY */
-
-if(!universeId && game.placeId){
-
-universeId = await getUniverseId(game.placeId);
-
-}
-
-if(!universeId) continue;
-
-/* GAME DATA */
-
-const gameRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${universeId}`);
-
+const gameRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${game.universeId}`);
 const gameData = await gameRes.json();
-
-if(!gameData.data || !gameData.data.length) continue;
 
 const gameInfo = gameData.data[0];
 
-/* THUMBNAIL */
-
-const thumbRes = await fetch(`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${universeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`);
+const thumbRes = await fetch(`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${game.universeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`);
 
 const thumbData = await thumbRes.json();
 
 const imageUrl = thumbData.data[0].imageUrl;
 
-renderRelease(game,gameInfo,imageUrl,universeId);
+renderRelease(game,gameInfo,imageUrl);
 
 }catch(err){
 
@@ -683,11 +625,11 @@ console.log(err);
 
 }
 
-function renderRelease(game,stats,image,universeId){
+function renderRelease(game,stats,image){
 
 const container = document.getElementById('release-container');
 
-const chartId = `chart-${universeId}`;
+const chartId = `chart-${game.universeId}`;
 
 container.innerHTML += `
 
@@ -771,8 +713,6 @@ setTimeout(()=>{
 
 const ctx = document.getElementById(chartId);
 
-if(!ctx) return;
-
 new Chart(ctx,{
 
 type:'line',
@@ -832,6 +772,8 @@ display:false
 fetchGameData();
 
 setInterval(fetchGameData,60000);
+
+</script>
 
 </body>
 </html>
