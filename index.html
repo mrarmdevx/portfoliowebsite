@@ -585,7 +585,7 @@ roblox:"https://www.roblox.com/games/85535589075948/Anime-Reversal"
 {
 name:"Anime Fantasy",
 role:"Project Manager",
-universeId:"18318589583",
+placeId:"18318589583",
 discord:"https://discord.com/invite/Uft7RR25Mk",
 roblox:"https://www.roblox.com/games/18318589583/AnimeFantasy-RE"
 }
@@ -602,19 +602,62 @@ for(const game of games){
 
 try{
 
-const gameRes = await fetch(`https://games.roproxy.com/v1/games/multiget-place-details?placeIds=${game.universeId}`);
+let gameInfo;
+let imageUrl;
 
-const gameInfo = {
-playing: gameData[0].playerCount || 0,
-favoritedCount: gameData[0].favoriteCount || 0,
-visits: gameData[0].visitCount || 0
-};
+/* =========================
+   ANIME REVERSAL
+========================= */
 
-const thumbRes = await fetch(`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${game.universeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`);
+if(game.universeId){
+
+const gameRes = await fetch(
+`https://games.roproxy.com/v1/games?universeIds=${game.universeId}`
+);
+
+const gameData = await gameRes.json();
+
+gameInfo = gameData.data[0];
+
+const thumbRes = await fetch(
+`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${game.universeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`
+);
 
 const thumbData = await thumbRes.json();
 
-const imageUrl = thumbData.data[0].imageUrl;
+imageUrl = thumbData.data[0].imageUrl;
+
+}
+
+/* =========================
+   ANIME FANTASY FIX
+========================= */
+
+else if(game.placeId){
+
+const placeRes = await fetch(
+`https://games.roproxy.com/v1/games/multiget-place-details?placeIds=${game.placeId}`
+);
+
+const placeData = await placeRes.json();
+
+const data = placeData[0];
+
+gameInfo = {
+playing:data.playerCount || 0,
+favoritedCount:data.favoriteCount || 0,
+visits:data.visitCount || 0
+};
+
+const thumbRes = await fetch(
+`https://thumbnails.roproxy.com/v1/games/icons?placeIds=${game.placeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`
+);
+
+const thumbData = await thumbRes.json();
+
+imageUrl = thumbData.data[0].imageUrl;
+
+}
 
 renderRelease(game,gameInfo,imageUrl);
 
@@ -632,7 +675,7 @@ function renderRelease(game,stats,image){
 
 const container = document.getElementById('release-container');
 
-const chartId = `chart-${game.universeId}`;
+const chartId = `chart-${game.name.replace(/\s+/g,'')}`;
 
 container.innerHTML += `
 
