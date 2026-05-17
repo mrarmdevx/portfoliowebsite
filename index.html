@@ -331,7 +331,7 @@ Discord
 <div class="project-card rounded-[32px] p-8">
 <p class="text-indigo-400 mb-4">Creative Director</p>
 <h3 class="text-3xl font-bold mb-6">OVERDRIVE</h3>
-<a href="https://discord.gg/9tzQ2nC3VD" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
+<a href="https://discord.gg/KcwQKPmtaN" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
 Discord
 </a>
 </div>
@@ -339,7 +339,7 @@ Discord
 <div class="project-card rounded-[32px] p-8">
 <p class="text-indigo-400 mb-4">Project Manager</p>
 <h3 class="text-3xl font-bold mb-6">Anime Fantasy</h3>
-<a href="https://discord.gg/KcwQKPmtaN" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
+<a href="https://discord.com/invite/Uft7RR25Mk" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
 Discord
 </a>
 </div>
@@ -347,7 +347,7 @@ Discord
 <div class="project-card rounded-[32px] p-8">
 <p class="text-indigo-400 mb-4">Creative Director</p>
 <h3 class="text-3xl font-bold mb-6">Anime Zero</h3>
-<a href="https://discord.com/invite/Uft7RR25Mk" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
+<a href="https://discord.gg/vaX39agB4N" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
 Discord
 </a>
 </div>
@@ -355,15 +355,15 @@ Discord
 <div class="project-card rounded-[32px] p-8">
 <p class="text-indigo-400 mb-4">Project Manager</p>
 <h3 class="text-3xl font-bold mb-6">Anime Commander</h3>
-<a href="https://discord.gg/vaX39agB4N" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
+<a href="https://discord.gg/MRvr58TYhk" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
 Discord
 </a>
 </div>
 
 <div class="project-card rounded-[32px] p-8">
 <p class="text-indigo-400 mb-4">Creative Director</p>
-<h3 class="text-3xl font-bold mb-6">Special Project</h3>
-<a href="https://discord.gg/MRvr58TYhk" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
+<h3 class="text-3xl font-bold mb-6">Anime Fantasy</h3>
+<a href="https://discord.com/invite/Uft7RR25Mk" target="_blank" class="block text-center py-4 rounded-2xl border border-white/10 glow-btn">
 Discord
 </a>
 </div>
@@ -572,16 +572,33 @@ behavior:'smooth'
 
 /* RELEASE PROJECT */
 
-const game = {
+const games = [
 
+{
 name:"Anime Reversal",
+role:"Creative Director",
 universeId:"8966502575",
 discord:"https://discord.gg/9tzQ2nC3VD",
 roblox:"https://www.roblox.com/games/85535589075948/Anime-Reversal"
+},
 
-};
+{
+name:"Anime Fantasy",
+role:"Project Manager",
+universeId:"6833871774",
+discord:"https://discord.com/invite/Uft7RR25Mk",
+roblox:"https://www.roblox.com/games/18318589583/AnimeFantasy-RE"
+}
+
+];
 
 async function fetchGameData(){
+
+const container = document.getElementById('release-container');
+
+container.innerHTML = '';
+
+for(const game of games){
 
 try{
 
@@ -596,7 +613,7 @@ const thumbData = await thumbRes.json();
 
 const imageUrl = thumbData.data[0].imageUrl;
 
-renderRelease(gameInfo,imageUrl);
+renderRelease(game,gameInfo,imageUrl);
 
 }catch(err){
 
@@ -606,24 +623,28 @@ console.log(err);
 
 }
 
-function renderRelease(stats,image){
+}
+
+function renderRelease(game,stats,image){
 
 const container = document.getElementById('release-container');
 
-container.innerHTML = `
+const chartId = `chart-${game.universeId}`;
 
-<div class="project-card rounded-[40px] overflow-hidden">
+container.innerHTML += `
+
+<div class="project-card rounded-[40px] overflow-hidden mb-12">
 
 <img src="${image}" class="w-full h-[350px] object-cover">
 
 <div class="p-10">
 
 <p class="text-indigo-400 mb-4 font-semibold">
-Creative Director
+${game.role}
 </p>
 
 <h3 class="text-5xl font-bold mb-10">
-Anime Reversal
+${game.name}
 </h3>
 
 <div class="grid grid-cols-3 gap-5 mb-10 text-center">
@@ -666,7 +687,7 @@ ${stats.visits.toLocaleString()}
 
 </div>
 
-<canvas id="gameChart"></canvas>
+<canvas id="${chartId}"></canvas>
 
 <div class="grid md:grid-cols-2 gap-6 mt-10">
 
@@ -690,7 +711,7 @@ Play Roblox Game
 
 setTimeout(()=>{
 
-const ctx = document.getElementById('gameChart');
+const ctx = document.getElementById(chartId);
 
 new Chart(ctx,{
 
@@ -751,7 +772,6 @@ display:false
 fetchGameData();
 
 setInterval(fetchGameData,60000);
-
 </script>
 
 </body>
