@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KAMI |Portfolio</title>
+<title>MR. ARM | Premium Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
@@ -106,6 +107,7 @@ box-shadow:0 0 35px rgba(255,255,255,.2);
 background:linear-gradient(180deg,#111,#070707);
 border:1px solid rgba(255,255,255,.08);
 transition:.4s;
+overflow:hidden;
 }
 
 .project-card:hover{
@@ -127,14 +129,8 @@ animation:pulse 1.5s infinite;
 display:none;
 }
 
-.contact-input{
-background:#0d0d0d;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.contact-input:focus{
-outline:none;
-border-color:#6366f1;
+canvas{
+height:200px !important;
 }
 
 @media(max-width:900px){
@@ -209,8 +205,8 @@ HOME
 ACTIVE
 </button>
 
-<button onclick="showSection('past')" class="bg-zinc-800 px-4 py-2 rounded-xl text-xs">
-PAST
+<button onclick="showSection('release')" class="bg-zinc-800 px-4 py-2 rounded-xl text-xs">
+RELEASE
 </button>
 
 </div>
@@ -250,46 +246,6 @@ ACTIVE PROJECT
 <a href="https://discord.gg/kpRZPhTST" target="_blank" class="glow-btn border border-white/10 px-10 py-5 rounded-2xl font-bold">
 TESTER HUB
 </a>
-
-</div>
-
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16">
-
-<div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800">
-
-<h2 class="text-4xl font-bold mb-2">
-12+
-</h2>
-
-<p class="text-zinc-400">
-Projects
-</p>
-
-</div>
-
-<div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800">
-
-<h2 class="text-4xl font-bold mb-2">
-50K+
-</h2>
-
-<p class="text-zinc-400">
-Community Reach
-</p>
-
-</div>
-
-<div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800">
-
-<h2 class="text-4xl font-bold mb-2">
-3+
-</h2>
-
-<p class="text-zinc-400">
-Years Experience
-</p>
-
-</div>
 
 </div>
 
@@ -368,80 +324,35 @@ Discord & Roblox Specialist
 Active Project
 </h2>
 
-<p class="text-zinc-400 text-lg mb-4">
-Project Manager / Creative Director
+<p class="text-zinc-400 text-lg mb-16">
+Currently active management and creative direction projects.
 </p>
 
-<div class="flex items-center gap-3 text-emerald-400 mb-16">
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<div class="w-3 h-3 rounded-full bg-emerald-400 live-dot"></div>
-
-Currently Active
-
+<div class="project-card rounded-[32px] p-8">
+<p class="text-indigo-400 mb-4">Project Manager</p>
+<h3 class="text-3xl font-bold mb-6">Anime Horizon</h3>
 </div>
 
-<div class="grid lg:grid-cols-2 gap-10">
-
-<!-- CARD -->
-
-<div class="project-card rounded-[32px] p-10">
-<p class="text-indigo-400 mb-4 font-semibold">Project Manager</p>
-<h3 class="text-4xl font-bold mb-8">Active Community #1</h3>
-
-<a href="https://discord.gg/qawDNGxk5Q" target="_blank"
-class="block text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Join Discord
-</a>
+<div class="project-card rounded-[32px] p-8">
+<p class="text-indigo-400 mb-4">Creative Director</p>
+<h3 class="text-3xl font-bold mb-6">OVERDRIVE</h3>
 </div>
 
-<div class="project-card rounded-[32px] p-10">
-<p class="text-indigo-400 mb-4 font-semibold">Creative Director</p>
-<h3 class="text-4xl font-bold mb-8">Anime Reversal</h3>
-
-<a href="https://discord.gg/9tzQ2nC3VD" target="_blank"
-class="block text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Join Discord
-</a>
+<div class="project-card rounded-[32px] p-8">
+<p class="text-indigo-400 mb-4">Manager</p>
+<h3 class="text-3xl font-bold mb-6">Anime Fantasy</h3>
 </div>
 
-<div class="project-card rounded-[32px] p-10">
-<p class="text-indigo-400 mb-4 font-semibold">Project Manager</p>
-<h3 class="text-4xl font-bold mb-8">Active Community #3</h3>
-
-<a href="https://discord.gg/KcwQKPmtaN" target="_blank"
-class="block text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Join Discord
-</a>
+<div class="project-card rounded-[32px] p-8">
+<p class="text-indigo-400 mb-4">Moderator</p>
+<h3 class="text-3xl font-bold mb-6">Anime Zero</h3>
 </div>
 
-<div class="project-card rounded-[32px] p-10">
-<p class="text-indigo-400 mb-4 font-semibold">Creative Director</p>
-<h3 class="text-4xl font-bold mb-8">Active Community #4</h3>
-
-<a href="https://discord.com/invite/Uft7RR25Mk" target="_blank"
-class="block text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Join Discord
-</a>
-</div>
-
-<div class="project-card rounded-[32px] p-10">
-<p class="text-indigo-400 mb-4 font-semibold">Project Manager</p>
-<h3 class="text-4xl font-bold mb-8">Active Community #5</h3>
-
-<a href="https://discord.gg/vaX39agB4N" target="_blank"
-class="block text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Join Discord
-</a>
-</div>
-
-<div class="project-card rounded-[32px] p-10">
-<p class="text-indigo-400 mb-4 font-semibold">Creative Director</p>
-<h3 class="text-4xl font-bold mb-8">Active Community #6</h3>
-
-<a href="https://discord.gg/MRvr58TYhk" target="_blank"
-class="block text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Join Discord
-</a>
+<div class="project-card rounded-[32px] p-8">
+<p class="text-indigo-400 mb-4">Administrator</p>
+<h3 class="text-3xl font-bold mb-6">Anime Commander</h3>
 </div>
 
 </div>
@@ -458,41 +369,17 @@ Join Discord
 
 <div class="pt-36 pb-24 section-padding px-6">
 
-<div class="max-w-6xl mx-auto">
+<div class="max-w-7xl mx-auto">
 
 <h2 class="text-6xl font-bold mb-4">
 Release Project
 </h2>
 
 <p class="text-zinc-400 text-lg mb-16">
-Official released Roblox project.
+Live Roblox release project with real-time tracking.
 </p>
 
-<div class="project-card rounded-[40px] p-12">
-
-<p class="text-indigo-400 mb-4 font-semibold">
-Creative Director
-</p>
-
-<h3 class="text-5xl font-bold mb-10">
-Anime Reversal
-</h3>
-
-<div class="grid md:grid-cols-2 gap-6">
-
-<a href="https://discord.gg/9tzQ2nC3VD" target="_blank"
-class="text-center py-5 rounded-2xl border border-white/10 font-bold glow-btn">
-Discord Server
-</a>
-
-<a href="https://www.roblox.com/games/85535589075948/Anime-Reversal" target="_blank"
-class="text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
-Play Roblox Game
-</a>
-
-</div>
-
-</div>
+<div id="release-container"></div>
 
 </div>
 
@@ -540,10 +427,6 @@ Previously managed communities and projects.
 
 <div class="project-card rounded-[32px] p-8">
 <h3 class="text-3xl font-bold">Anime Frontires</h3>
-</div>
-
-<div class="project-card rounded-[32px] p-8">
-<h3 class="text-3xl font-bold">Anime Fantasy</h3>
 </div>
 
 </div>
@@ -673,6 +556,192 @@ behavior:'smooth'
 });
 
 }
+
+/* RELEASE PROJECT DATA */
+
+const game = {
+
+name:"Anime Reversal",
+universeId:"8966502575",
+discord:"https://discord.gg/9tzQ2nC3VD",
+roblox:"https://www.roblox.com/games/85535589075948/Anime-Reversal"
+
+};
+
+/* FETCH ROBLOX DATA */
+
+async function fetchGameData(){
+
+try{
+
+const gameRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${game.universeId}`);
+const gameData = await gameRes.json();
+
+const gameInfo = gameData.data[0];
+
+const thumbRes = await fetch(`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${game.universeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`);
+
+const thumbData = await thumbRes.json();
+
+const imageUrl = thumbData.data[0].imageUrl;
+
+renderRelease(gameInfo,imageUrl);
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* RENDER RELEASE */
+
+function renderRelease(stats,image){
+
+const container = document.getElementById('release-container');
+
+container.innerHTML = `
+
+<div class="project-card rounded-[40px] overflow-hidden">
+
+<img src="${image}" class="w-full h-[350px] object-cover">
+
+<div class="p-10">
+
+<p class="text-indigo-400 mb-4 font-semibold">
+Creative Director
+</p>
+
+<h3 class="text-5xl font-bold mb-10">
+Anime Reversal
+</h3>
+
+<div class="grid grid-cols-3 gap-5 mb-10 text-center">
+
+<div class="bg-zinc-950 rounded-2xl p-5">
+
+<p class="text-zinc-400 text-xs mb-2">
+PLAYING
+</p>
+
+<h4 class="text-3xl font-bold text-emerald-400">
+${stats.playing.toLocaleString()}
+</h4>
+
+</div>
+
+<div class="bg-zinc-950 rounded-2xl p-5">
+
+<p class="text-zinc-400 text-xs mb-2">
+LIKES
+</p>
+
+<h4 class="text-3xl font-bold">
+${stats.favoritedCount.toLocaleString()}
+</h4>
+
+</div>
+
+<div class="bg-zinc-950 rounded-2xl p-5">
+
+<p class="text-zinc-400 text-xs mb-2">
+VISITS
+</p>
+
+<h4 class="text-3xl font-bold">
+${stats.visits.toLocaleString()}
+</h4>
+
+</div>
+
+</div>
+
+<canvas id="gameChart"></canvas>
+
+<div class="grid md:grid-cols-2 gap-6 mt-10">
+
+<a href="${game.discord}" target="_blank"
+class="text-center py-5 rounded-2xl border border-white/10 font-bold glow-btn">
+Discord Server
+</a>
+
+<a href="${game.roblox}" target="_blank"
+class="text-center py-5 rounded-2xl bg-white text-black font-bold glow-btn">
+Play Roblox Game
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+setTimeout(()=>{
+
+const ctx = document.getElementById('gameChart');
+
+new Chart(ctx,{
+
+type:'line',
+
+data:{
+
+labels:['1H','2H','3H','4H','5H','NOW'],
+
+datasets:[{
+
+data:[
+stats.playing * .5,
+stats.playing * .6,
+stats.playing * .7,
+stats.playing * .8,
+stats.playing * .9,
+stats.playing
+],
+
+borderColor:'#8b5cf6',
+backgroundColor:'rgba(139,92,246,.1)',
+fill:true,
+tension:.4,
+borderWidth:3
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+legend:{
+display:false
+}
+},
+
+scales:{
+x:{
+display:false
+},
+y:{
+display:false
+}
+}
+
+}
+
+});
+
+},200);
+
+}
+
+fetchGameData();
+
+setInterval(fetchGameData,60000);
 
 </script>
 
