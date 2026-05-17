@@ -585,7 +585,7 @@ roblox:"https://www.roblox.com/games/85535589075948/Anime-Reversal"
 {
 name:"Anime Fantasy",
 role:"Project Manager",
-universeId:"7322800732",
+universeId:"18318589583",
 discord:"https://discord.com/invite/Uft7RR25Mk",
 roblox:"https://www.roblox.com/games/18318589583/AnimeFantasy-RE"
 }
@@ -602,10 +602,13 @@ for(const game of games){
 
 try{
 
-const gameRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${game.universeId}`);
-const gameData = await gameRes.json();
+const gameRes = await fetch(`https://games.roproxy.com/v1/games/multiget-place-details?placeIds=${game.universeId}`);
 
-const gameInfo = gameData.data[0];
+const gameInfo = {
+playing: gameData[0].playerCount || 0,
+favoritedCount: gameData[0].favoriteCount || 0,
+visits: gameData[0].visitCount || 0
+};
 
 const thumbRes = await fetch(`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${game.universeId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false`);
 
